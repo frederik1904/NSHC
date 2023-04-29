@@ -17,7 +17,6 @@ function setup() {
 
 function draw() {
     image(backgroundImage, 0, 0);
-    p.tick()
     p.tick(enemies).draw(images);
 
     for (let i = 0; i < enemies.length; i++) {

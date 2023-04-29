@@ -15,17 +15,13 @@ class Player {
         image(images[0], p.x, p.y);
 
         if (this.weapon.LAST_SHOT + this.weapon.DRAW_TIME > Date.now()) {
-            // Draw bullet
-            push();
-            stroke(255, 255, 255);
-            line(this.x, this.y, 0, this.y);
-            pop();
+            this.weapon.DRAW(this)
         }
     }
 
     tick(enemies) {
         this.move()
-        this.handleWeapon()
+        this.handleWeapon(enemies)
 
         return this;
     }
@@ -91,6 +87,9 @@ class Player {
 
     detectHits(enemies) {
 
+        for (let i = 0; i < enemies.length; i++) {
+            this.weapon.DETECT_INTERACTION(enemies[i], this);
+        }
     }
 
 }

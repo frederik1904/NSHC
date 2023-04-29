@@ -19,7 +19,19 @@ const WEAPONS = {
         RELOAD_TIME: 50,
         DAMAGE: 100,
         COOLDOWN: 200,
-        DRAW_TIME: 25
+        DRAW_TIME: 25,
+        DETECT_INTERACTION: (enemy, player) => {
+            const size = 2;
+            if (enemy.y >= player.y - size && enemy.y <= player.y + size) {
+                enemy.hit(WEAPONS.NORMAL_GUN.DAMAGE)
+            }
+        },
+        DRAW: (player) => {
+            push();
+            stroke(255, 255, 255);
+            line(player.x, player.y, 0, player.y);
+            pop();
+        }
     }
 }
 
