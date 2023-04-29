@@ -8,8 +8,7 @@ class Mailman {
 
     draw(images) {
         push();
-        stroke(255, 255, 255);
-        rect(this.x, this.y, 20, 20);
+        image(images[1], this.x, this.y);
         pop();
     }
 
