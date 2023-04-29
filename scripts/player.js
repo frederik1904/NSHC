@@ -11,25 +11,22 @@ class Player {
     }
 
     draw(images) {
-        // Draw player
-        push();
-        fill(255, 0, 255);
         image(images[0], p.x, p.y);
-        pop();
 
         if (this.weapon.LAST_SHOT + this.weapon.DRAW_TIME > Date.now()) {
             // Draw bullet
             push();
-            fill(0, 255, 255);
             stroke(255, 255, 255);
             line(this.x, this.y, 0, this.y);
             pop();
         }
     }
 
-    tick() {
+    tick(enemies) {
         this.move()
         this.handleWeapon()
+
+        return this;
     }
 
     move() {
@@ -49,12 +46,12 @@ class Player {
         }
     }
 
-    handleWeapon() {
+    handleWeapon(enemies) {
         if (keyIsDown(32) && this.canShoot()) {
             this.weapon.REMAINING_BULLETS -= 1;
             this.weapon.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.weapon.COOLDOWN;
             this.weapon.LAST_SHOT = Date.now();
-            console.log(this.weapon);
+            this.detectHits(enemies)
         }
 
         if (keyIsDown(82) && this.canWeaponAction()) {
@@ -71,7 +68,6 @@ class Player {
             || this.weapon.NEXT_ALLOWED_ACTION_TIME < Date.now();
     }
 
-
     setupWeapon(name) {
         const referenceWeapon = WEAPONS[name];
 
@@ -85,5 +81,8 @@ class Player {
         this.weapon.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.weapon.RELOAD_TIME;
     }
 
+    detectHits(enemies) {
+
+    }
 
 }

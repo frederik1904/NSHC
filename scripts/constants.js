@@ -23,4 +23,14 @@ const WEAPONS = {
     }
 }
 
+const MAILMAN = {
+    'STD': {
+        SPEED: 0.1,
+        HEALTH: 200
+    }
+}
+
+
+
+
 const WEAPON_NAMES = Object.getOwnPropertyNames(WEAPONS)
