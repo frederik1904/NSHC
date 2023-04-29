@@ -14,7 +14,7 @@ class Player {
         // Draw player
         push();
         fill(255, 0, 255);
-        rect(p.x, p.y, 20, 20);
+        image(images[0], p.x, p.y);
         pop();
 
         if (this.weapon.LAST_SHOT + this.weapon.DRAW_TIME > Date.now()) {
