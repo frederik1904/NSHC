@@ -5,5 +5,5 @@ const Direction = {
     RIGHT: 3
 }
 
-const WIDTH = 400;
-const HEIGHT = 400;
+const WIDTH = 800;
+const HEIGHT = 600;

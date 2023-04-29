@@ -12,7 +12,7 @@ class Player {
         // canvas.mousePressed(this.shoot)
     }
 
-    draw() {
+    draw(images) {
         // Draw player
         push();
         fill(255, 0, 255);
