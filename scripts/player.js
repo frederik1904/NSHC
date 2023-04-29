@@ -54,6 +54,7 @@ class Player {
         if (keyIsDown(32) && this.canShoot()) {
             this.weapon.REMAINING_BULLETS -= 1;
             this.weapon.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.weapon.COOLDOWN;
+            this.weapon.LAST_SHOT = Date.now();
             console.log(this.weapon);
         }
 
@@ -76,7 +77,7 @@ class Player {
         const referenceWeapon = WEAPONS[name];
 
         this.weapon = {
-            ...referenceWeapon, REMAINING_BULLETS: referenceWeapon.MAG_SIZE, NEXT_ALLOWED_ACTION_TIME: undefined
+            ...referenceWeapon, REMAINING_BULLETS: referenceWeapon.MAG_SIZE, NEXT_ALLOWED_ACTION_TIME: undefined, LAST_SHOT: undefined
         }
     }
 
@@ -84,4 +85,6 @@ class Player {
         this.weapon.REMAINING_BULLETS = this.weapon.MAG_SIZE;
         this.weapon.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.weapon.RELOAD_TIME;
     }
+
+
 }
