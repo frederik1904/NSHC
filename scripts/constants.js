@@ -7,3 +7,20 @@ const Direction = {
 
 const WIDTH = 800;
 const HEIGHT = 600;
+
+
+//ms
+const BULLET_DRAW_TIME = 200
+
+
+const WEAPONS = {
+    'NORMAL_GUN': {
+        MAG_SIZE: 5,
+        RELOAD_TIME: 50,
+        DAMAGE: 100,
+        COOLDOWN: 200,
+        DRAW_TIME: 50
+    }
+}
+
+const WEAPON_NAMES = Object.getOwnPropertyNames(WEAPONS)

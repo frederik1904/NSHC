@@ -7,8 +7,7 @@ class Player {
 
         this.direction = Direction.LEFT;
 
-        this.bullet = {x: -10, y: -10}
-
+        this.setupWeapon(WEAPON_NAMES[0])
         // canvas.mousePressed(this.shoot)
     }
 
@@ -19,20 +18,19 @@ class Player {
         rect(p.x, p.y, 20, 20);
         pop();
 
-        // Draw bullet
-        if (this.bullet.x && this.bullet.y) {
+        if (this.weapon.LAST_SHOT + this.weapon.DRAW_TIME > Date.now()) {
+            // Draw bullet
             push();
             fill(0, 255, 255);
-            stroke(255,255,255);
+            stroke(255, 255, 255);
             line(this.x, this.y, 0, this.y);
             pop();
         }
-
     }
 
     tick() {
         this.move()
-        this.shoot()
+        this.handleWeapon()
     }
 
     move() {
@@ -52,10 +50,38 @@ class Player {
         }
     }
 
-    shoot() {
-        if (keyIsDown(32)) {
-            this.bullet.x = mouseX;
-            this.bullet.y = mouseY;
+    handleWeapon() {
+        if (keyIsDown(32) && this.canShoot()) {
+            this.weapon.REMAINING_BULLETS -= 1;
+            this.weapon.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.weapon.COOLDOWN;
+            console.log(this.weapon);
         }
+
+        if (keyIsDown(82) && this.canWeaponAction()) {
+            this.reload();
+        }
+    }
+
+    canShoot() {
+        return this.weapon.REMAINING_BULLETS > 0 && this.canWeaponAction();
+    }
+
+    canWeaponAction() {
+        return this.weapon.NEXT_ALLOWED_ACTION_TIME === undefined
+            || this.weapon.NEXT_ALLOWED_ACTION_TIME < Date.now();
+    }
+
+
+    setupWeapon(name) {
+        const referenceWeapon = WEAPONS[name];
+
+        this.weapon = {
+            ...referenceWeapon, REMAINING_BULLETS: referenceWeapon.MAG_SIZE, NEXT_ALLOWED_ACTION_TIME: undefined
+        }
+    }
+
+    reload() {
+        this.weapon.REMAINING_BULLETS = this.weapon.MAG_SIZE;
+        this.weapon.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.weapon.RELOAD_TIME;
     }
 }
