@@ -1,8 +1,7 @@
 class Player {
-    constructor(x, y, canvas) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.canvas = canvas;
         this.speedAmplifier = 0.5;
 
         this.direction = Direction.LEFT;

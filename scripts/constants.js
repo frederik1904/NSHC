@@ -19,7 +19,7 @@ const WEAPONS = {
         RELOAD_TIME: 50,
         DAMAGE: 100,
         COOLDOWN: 200,
-        DRAW_TIME: 50
+        DRAW_TIME: 25
     }
 }
 
