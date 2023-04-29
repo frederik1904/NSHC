@@ -1,14 +1,14 @@
 class Player {
-    constructor(x, y, canvas) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.canvas = canvas;
-        this.speedAmplifier = 0.5;
 
+        this.x_vel = 0;
+        this.y_vel = 0;
+
+        this.speedAmplifier = 0.0012;
         this.direction = Direction.LEFT;
-
         this.setupWeapon(WEAPON_NAMES[0])
-        // canvas.mousePressed(this.shoot)
     }
 
     draw(images) {
@@ -34,20 +34,27 @@ class Player {
     }
 
     move() {
+        const damp = 0.998;
+        this.x_vel *= Math.pow(damp, 1000/deltaTime);
+        this.y_vel *= Math.pow(damp, 1000/deltaTime);
+
         let speedAmplifier = deltaTime * this.speedAmplifier
 
         if (keyIsDown(LEFT_ARROW)) {
-            this.x -= speedAmplifier;
+            this.x_vel -= speedAmplifier;
         }
         if (keyIsDown(RIGHT_ARROW)) {
-            this.x += speedAmplifier;
+            this.x_vel += speedAmplifier;
         }
         if (keyIsDown(UP_ARROW)) {
-            this.y -= speedAmplifier;
+            this.y_vel -= speedAmplifier;
         }
         if (keyIsDown(DOWN_ARROW)) {
-            this.y += speedAmplifier;
+            this.y_vel += speedAmplifier;
         }
+
+        this.x += this.x_vel * deltaTime;
+        this.y += this.y_vel * deltaTime;
     }
 
     handleWeapon() {
