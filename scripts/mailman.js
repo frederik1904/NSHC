@@ -29,4 +29,8 @@ class Mailman {
     hit(damage) {
         this.health = Math.max(this.health - damage, 0);
     }
+
+    getDimensions() {
+        return {...this.config}
+    }
 }

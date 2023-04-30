@@ -9,7 +9,7 @@ class Player {
         this.width = 20;
         this.height = 30;
 
-        this.gunHeight = -10;
+        this.gunHeight = 10;
 
         this.speedAmplifier = 0.0012;
         this.direction = Direction.LEFT;
@@ -18,15 +18,12 @@ class Player {
 
     draw(images) {
         image(images[0], p.x, p.y);
-
-        if (this.weapon.LAST_SHOT + this.weapon.DRAW_TIME > Date.now()) {
-            this.weapon.DRAW(this)
-        }
+        this.weapon.draw(this)
     }
 
     tick(enemies) {
-        this.move()
-        this.handleWeapon(enemies)
+        this.move();
+        this.weapon.tick(enemies, this);
 
         return this;
     }
@@ -66,46 +63,18 @@ class Player {
         }
     }
 
-    handleWeapon(enemies) {
-        if (keyIsDown(32) && this.canShoot()) {
-            this.weapon.REMAINING_BULLETS -= 1;
-            this.weapon.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.weapon.COOLDOWN;
-            this.weapon.LAST_SHOT = Date.now();
-            this.detectHits(enemies)
-        }
-
-        if (keyIsDown(82) && this.canWeaponAction()) {
-            this.reload();
-        }
-    }
-
-    canShoot() {
-        return this.weapon.REMAINING_BULLETS > 0 && this.canWeaponAction();
-    }
-
-    canWeaponAction() {
-        return this.weapon.NEXT_ALLOWED_ACTION_TIME === undefined
-            || this.weapon.NEXT_ALLOWED_ACTION_TIME < Date.now();
-    }
-
     setupWeapon(name) {
         const referenceWeapon = WEAPONS[name];
 
         this.weapon = {
             ...referenceWeapon, REMAINING_BULLETS: referenceWeapon.MAG_SIZE, NEXT_ALLOWED_ACTION_TIME: undefined, LAST_SHOT: undefined
         }
+
+        this.weapon = new Weapon(WEAPONS[name])
     }
 
-    reload() {
-        this.weapon.REMAINING_BULLETS = this.weapon.MAG_SIZE;
-        this.weapon.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.weapon.RELOAD_TIME;
-    }
-
-    detectHits(enemies) {
-
-        for (let i = 0; i < enemies.length; i++) {
-            this.weapon.DETECT_INTERACTION(enemies[i], this);
-        }
+    getWeaponHeight() {
+        return this.y + this.gunHeight;
     }
 
 }
