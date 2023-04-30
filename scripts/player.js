@@ -11,7 +11,7 @@ class Player {
 
         this.gunHeight = 10;
 
-        this.speedAmplifier = 0.0012;
+        this.speedAmplifier = ENTITIES.PLAYER.SPEED;
         this.direction = Direction.LEFT;
         this.setupWeapon(WEAPON_NAMES[0])
     }
@@ -64,13 +64,13 @@ class Player {
     }
 
     setupWeapon(name) {
-        const referenceWeapon = WEAPONS[name];
+        const referenceWeapon = WEAPONS.SHOTGIN;
 
         this.weapon = {
-            ...referenceWeapon, REMAINING_BULLETS: referenceWeapon.MAG_SIZE, NEXT_ALLOWED_ACTION_TIME: undefined, LAST_SHOT: undefined
+            // ...referenceWeapon, REMAINING_BULLETS: referenceWeapon.MAG_SIZE, NEXT_ALLOWED_ACTION_TIME: undefined, LAST_SHOT: undefined
         }
 
-        this.weapon = new Weapon(WEAPONS[name])
+        this.weapon = new Weapon(WEAPONS.REVOLVER)
     }
 
     getWeaponHeight() {

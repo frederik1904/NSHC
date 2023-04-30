@@ -13,15 +13,15 @@ class Weapon {
             this.REMAINING_BULLETS -= 1;
             this.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.config.COOLDOWN;
             this.LAST_SHOT = Date.now();
-            switch (this.config.NAME) {
-                case WEAPONS.NORMAL_GUN.NAME:
-                    this.bulletArray = [{y: player.getWeaponHeight(), x: 0}]
-                    break;
-                case WEAPONS.SHOTGIN.NAME:
-                    this.bulletArray = []
-                    for (let i = 0; i < this.config.BULLETS; i++) {
 
-                    }
+            this.bulletArray = []
+            let SPREAD = this.config.SPREAD;
+            for (let i = 0; i < this.config.BULLETS; i++) {
+                let offset = 0;
+                if(SPREAD > 0) {
+                    offset = Math.round(Math.random() * SPREAD) - (SPREAD / 2);
+                }
+                this.bulletArray.push({x: player.x - this.config.SHOOT_DISTANCE, y: player.getWeaponHeight() + offset})
             }
 
             for (let i = 0; i < enemies.length; i++) {
@@ -45,7 +45,10 @@ class Weapon {
         if (this.LAST_SHOT + this.config.DRAW_TIME > Date.now()) {
             push();
             stroke(0, 255, 255);
-            line(player.x, player.getWeaponHeight(), 0, player.getWeaponHeight());
+            for (let i = 0; i < this.bulletArray.length; i++) {
+                console.log(player.x, player.getWeaponHeight(), this.bulletArray[i].x, this.bulletArray[i].y)
+                line(player.x, player.getWeaponHeight(), this.bulletArray[i].x, this.bulletArray[i].y);
+            }
             pop();
         }
     }

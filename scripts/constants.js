@@ -26,7 +26,10 @@ const WEAPONS = {
         DAMAGE: 100,
         COOLDOWN: 200,
         DRAW_TIME: 50,
-        KNOCKBACK: 0.25,
+        KNOCKBACK: 0.125,
+        SHOOT_DISTANCE: 300,
+        BULLETS: 1,
+        SPREAD: 0,
         NAME: 'NORMAL_GUN'
     },
     SHOTGIN: {
@@ -37,7 +40,21 @@ const WEAPONS = {
         DRAW_TIME: 75,
         KNOCKBACK: 0.50,
         BULLETS: 15,
+        SHOOT_DISTANCE: 100,
+        SPREAD: 30,
         NAME: 'SHOTGIN'
+    },
+    'REVOLVER': {
+        MAG_SIZE: 8,
+        RELOAD_TIME: 300,
+        DAMAGE: 200,
+        COOLDOWN: 1000,
+        DRAW_TIME: 100,
+        KNOCKBACK: 0.5,
+        SHOOT_DISTANCE: 500,
+        BULLETS: 1,
+        SPREAD: 2,
+        NAME: 'REVOLVER'
     }
 }
 
@@ -48,7 +65,7 @@ const ENTITIES = {
         HEIGHT: 30,
         WIDTH: 20
     }, 'PLAYER': {
-        SPEED: 0.05,
+        SPEED: 0.0012,
         HEALTH: 200,
         HEIGHT: 30,
         WIDTH: 20
