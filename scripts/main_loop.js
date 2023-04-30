@@ -110,5 +110,3 @@ function drawUI() {
 
     shop.draw();
 }
-
-document.getElementB

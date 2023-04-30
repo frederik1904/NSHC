@@ -47,7 +47,7 @@ class Mailman {
             let midy = this.y + this.config.HEIGHT;
             let size = 10;
 
-            for (let i = 1; i < 20; i++) {
+            for (let i = 1; i < damage / 10; i++) {
                 backgroundBuffer.line(random(midx - size, midx + size), random(midy - size, midy + size), random(midx - size, midx + size), random(midy - size, midy + size));
             }
             this.health = Math.max(this.health - damage, 0);

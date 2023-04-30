@@ -4,7 +4,7 @@ class Shop {
         this.items = WEAPON_NAMES
 
         this.selected = 0;
-        this.cooldown = 100;
+        this.cooldown = 200;
         this.NEXT_ALLOWED_ACTION_TIME = undefined;
     }
 
@@ -25,7 +25,7 @@ class Shop {
 
             textAlign(CENTER);
 
-            text(this.items[i], x + (rectSize / 2), shopY1 + (this.height / 2))
+            text(`${this.items[i]} (${WEAPONS[this.items[i]].PRICE}$)`, x + (rectSize / 2), shopY1 + (this.height / 2))
 
             if (i == this.selected) {
                 fill(0, 0, 0, 100)

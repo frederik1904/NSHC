@@ -79,7 +79,11 @@ class Player {
     }
 
     withdrawMoney(value) {
-        return true;
+        if (this.money >= value) {
+            this.money -= value;
+            return true;
+        }
+        return false;
     }
 
 }
