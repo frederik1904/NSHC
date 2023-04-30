@@ -19,6 +19,7 @@ class Player {
     draw(images) {
         image(images[0], p.x, p.y);
         this.weapon.draw(this)
+        text(`${this.weapon.REMAINING_BULLETS}/${this.weapon.config.MAG_SIZE}`,this.x, this.y);
     }
 
     tick(enemies) {
@@ -75,6 +76,10 @@ class Player {
 
     getWeaponHeight() {
         return this.y + this.gunHeight;
+    }
+
+    getAmmo() {
+        return this.weapon.AMMO;
     }
 
 }

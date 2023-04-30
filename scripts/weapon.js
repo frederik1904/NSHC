@@ -4,6 +4,7 @@ class Weapon {
         this.REMAINING_BULLETS = config.MAG_SIZE;
         this.NEXT_ALLOWED_ACTION_TIME = undefined;
         this.LAST_SHOT = undefined;
+        this.AMMO = config.START_AMMO;
 
         this.bulletArray = []
     }
@@ -54,8 +55,11 @@ class Weapon {
     }
 
     reload() {
-        this.REMAINING_BULLETS = this.config.MAG_SIZE;
-        this.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.config.RELOAD_TIME;
+        if (this.AMMO > 0) {
+            this.REMAINING_BULLETS = Math.min(this.config.MAG_SIZE, this.AMMO);
+            this.AMMO = this.AMMO - Math.min(this.config.MAG_SIZE, this.AMMO)
+            this.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.config.RELOAD_TIME;
+        }
     }
 
     detectInteraction(player, enemy) {

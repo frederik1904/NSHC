@@ -36,7 +36,7 @@ function draw() {
     background(0);
     backgroundBuffer.stroke(255, 0, 0)
     backgroundBuffer.strokeWeight(10);
-    backgroundBuffer.line(random(0, WIDTH), random(0, HEIGHT), random(0, WIDTH), random(0, HEIGHT));
+    // backgroundBuffer.line(random(0, WIDTH), random(0, HEIGHT), random(0, WIDTH), random(0, HEIGHT));
     image(backgroundBuffer, 0, 0, WIDTH, HEIGHT)
 
     // Tick
@@ -71,8 +71,8 @@ function getCurrentLevelProgress() {
 function drawUI() {
     stroke(0)
     // Level
-    var levelHeight = 30;
-    var levelBarBorder = 4;
+    let levelHeight = 30;
+    let levelBarBorder = 4;
 
     fill(0);
     rect(0, 0, WIDTH, levelHeight);
@@ -91,6 +91,7 @@ function drawUI() {
     textSize(14);
     fill(255);
 
-    text('10$', 10, 50);
+    text('10$', WIDTH - 10, 50);
+    text(`AMMO: ${p.getAmmo()}`, WIDTH - 10, 70);
 }
 

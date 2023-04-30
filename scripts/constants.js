@@ -22,6 +22,7 @@ const BULLET_DRAW_TIME = 200
 const WEAPONS = {
     'NORMAL_GUN': {
         MAG_SIZE: 5,
+        START_AMMO: 9999,
         RELOAD_TIME: 50,
         DAMAGE: 100,
         COOLDOWN: 200,
@@ -34,6 +35,7 @@ const WEAPONS = {
     },
     SHOTGIN: {
         MAG_SIZE: 2,
+        START_AMMO: 30,
         RELOAD_TIME: 25,
         DAMAGE: 25,
         COOLDOWN: 300,
@@ -46,6 +48,7 @@ const WEAPONS = {
     },
     'REVOLVER': {
         MAG_SIZE: 8,
+        START_AMMO: 50,
         RELOAD_TIME: 300,
         DAMAGE: 200,
         COOLDOWN: 1000,
@@ -59,8 +62,9 @@ const WEAPONS = {
     'SMG': {
         MAG_SIZE: 50,
         RELOAD_TIME: 500,
-        DAMAGE: 50,
-        COOLDOWN: 25,
+        START_AMMO: 200,
+        DAMAGE: 25,
+        COOLDOWN: 40,
         DRAW_TIME: 25,
         KNOCKBACK: 0.15,
         SHOOT_DISTANCE: 400,
