@@ -79,7 +79,8 @@ const ENTITIES = {
         SPEED: 0.05,
         HEALTH: 200,
         HEIGHT: 30,
-        WIDTH: 20
+        WIDTH: 20,
+        KILL_REWARD: 50,
     }, 'PLAYER': {
         SPEED: 0.0012,
         HEALTH: 200,
