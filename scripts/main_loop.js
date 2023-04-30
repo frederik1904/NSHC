@@ -1,6 +1,7 @@
 var p;
 var canvas;
 var backgroundImage;
+var backgroundBuffer;
 var images = [];
 var enemies = [];
 var gameTimer = 0;
@@ -9,13 +10,19 @@ var enemySpawnTime = [500, 2500, 3000, 5000, 5400, 6000, 7000, 10000, 10500]
 var msPerLevel = 60 * 1000;
 var maxLevel = 4;
 
+function preload() {
+    backgroundImage = loadImage(i_background);
+}
+
 function setup() {
     canvas = createCanvas(WIDTH, HEIGHT);
     p = new Player(200, 200);
-    backgroundImage = loadImage(i_background);
 
     images.push(loadImage(i_player));
     images.push(loadImage(i_enemy));
+
+    backgroundBuffer = createGraphics(WIDTH, HEIGHT);
+    backgroundBuffer.image(backgroundImage, 0, 0, WIDTH, HEIGHT)
 }
 
 function draw() {
@@ -26,7 +33,11 @@ function draw() {
         enemies.push(new Mailman(-10, random(20, 580), MAILMAN.STD));
     }
 
-    image(backgroundImage, 0, 0);
+    background(0);
+    backgroundBuffer.stroke(255, 0, 0)
+    backgroundBuffer.strokeWeight(10);
+    backgroundBuffer.line(random(0, WIDTH), random(0, HEIGHT), random(0, WIDTH), random(0, HEIGHT));
+    image(backgroundBuffer, 0, 0, WIDTH, HEIGHT)
 
     // Tick
     p.tick(enemies);
@@ -58,6 +69,7 @@ function getCurrentLevelProgress() {
 }
 
 function drawUI() {
+    stroke(0)
     // Level
     var levelHeight = 30;
     var levelBarBorder = 4;
