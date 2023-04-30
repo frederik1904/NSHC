@@ -41,6 +41,9 @@ function draw() {
 
     // Tick
     p.tick(enemies);
+
+    enemies = enemies.filter(e => !e.isDead())
+
     for (let i = 0; i < enemies.length; i++) {
         enemies[i].tick();
     }

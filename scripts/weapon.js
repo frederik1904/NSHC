@@ -45,7 +45,8 @@ class Weapon {
     draw(player) {
         if (this.LAST_SHOT + this.config.DRAW_TIME > Date.now()) {
             push();
-            stroke(0, 255, 255);
+            stroke(200, 150, 50, 150);
+            strokeWeight(5);
             for (let i = 0; i < this.bulletArray.length; i++) {
                 console.log(player.x, player.getWeaponHeight(), this.bulletArray[i].x, this.bulletArray[i].y)
                 line(player.x, player.getWeaponHeight(), this.bulletArray[i].x, this.bulletArray[i].y);
@@ -118,10 +119,11 @@ class Weapon {
             // optionally, draw a circle where the lines meet
             let intersectionX = x1 + (uA * (x2 - x1));
             let intersectionY = y1 + (uA * (y2 - y1));
+            push();
             fill(255, 0, 0);
             noStroke();
             ellipse(intersectionX, intersectionY, 20, 20);
-
+            pop();
             return true;
         }
         return false;

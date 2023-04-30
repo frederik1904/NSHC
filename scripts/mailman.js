@@ -44,4 +44,8 @@ class Mailman {
     getDimensions() {
         return {...this.config}
     }
+
+    isDead() {
+        return this.health <= 0
+    }
 }
