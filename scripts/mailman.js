@@ -8,7 +8,7 @@ class Mailman {
 
     draw(images) {
         push();
-        image(images[1], this.x, this.y);
+        image(images[this.config.IMAGE_INDEX], this.x, this.y);
 
         fill(0);
         const barHeight = 5;
