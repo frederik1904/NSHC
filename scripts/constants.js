@@ -37,7 +37,7 @@ const WEAPONS = {
 
 const MAILMAN = {
     'STD': {
-        SPEED: 0.1,
+        SPEED: 0.05,
         HEALTH: 200
     }
 }
