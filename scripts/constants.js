@@ -5,6 +5,12 @@ const Direction = {
     RIGHT: 3
 }
 
+const WEAPON_ACTION = {
+    FIRED: 1,
+    RELOAD: 2,
+    NONE: 3
+}
+
 const WIDTH = 800;
 const HEIGHT = 600;
 
@@ -19,26 +25,33 @@ const WEAPONS = {
         RELOAD_TIME: 50,
         DAMAGE: 100,
         COOLDOWN: 200,
-        DRAW_TIME: 25,
-        DETECT_INTERACTION: (enemy, player) => {
-            const size = 2;
-            if (enemy.y >= player.y - size && enemy.y <= player.y + size) {
-                enemy.hit(WEAPONS.NORMAL_GUN.DAMAGE)
-            }
-        },
-        DRAW: (player) => {
-            push();
-            stroke(255, 255, 255);
-            line(player.x, player.y, 0, player.y);
-            pop();
-        }
+        DRAW_TIME: 50,
+        KNOCKBACK: 0.25,
+        NAME: 'NORMAL_GUN'
+    },
+    SHOTGIN: {
+        MAG_SIZE: 2,
+        RELOAD_TIME: 25,
+        DAMAGE: 25,
+        COOLDOWN: 300,
+        DRAW_TIME: 75,
+        KNOCKBACK: 0.50,
+        BULLETS: 15,
+        NAME: 'SHOTGIN'
     }
 }
 
-const MAILMAN = {
+const ENTITIES = {
     'STD': {
         SPEED: 0.05,
-        HEALTH: 200
+        HEALTH: 200,
+        HEIGHT: 30,
+        WIDTH: 20
+    }, 'PLAYER': {
+        SPEED: 0.05,
+        HEALTH: 200,
+        HEIGHT: 30,
+        WIDTH: 20
     }
 }
 

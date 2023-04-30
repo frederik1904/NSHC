@@ -11,7 +11,7 @@ var maxLevel = 4;
 
 function setup() {
     canvas = createCanvas(WIDTH, HEIGHT);
-    p = new Player(200, 200);
+    p = new Player(200, 200, ENTITIES.PLAYER);
     backgroundImage = loadImage(i_background);
 
     images.push(loadImage(i_player));
@@ -23,7 +23,7 @@ function draw() {
 
     while (enemySpawnTime.length > 0 && gameTimer >= enemySpawnTime[0]) {
         enemySpawnTime.shift();
-        enemies.push(new Mailman(-10, random(20, 580), MAILMAN.STD));
+        enemies.push(new Mailman(-10, random(20, 580), ENTITIES.STD));
     }
 
     image(backgroundImage, 0, 0);
