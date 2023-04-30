@@ -83,12 +83,21 @@ const ENTITIES = {
         SPEED: 0.05,
         HEALTH: 200,
         HEIGHT: 30,
-        WIDTH: 20
+        WIDTH: 20,
+        KILL_REWARD: 50,
+        IMAGE_INDEX: 1,
     }, 'PLAYER': {
         SPEED: 0.0012,
         HEALTH: 200,
         HEIGHT: 30,
         WIDTH: 20
+    }, 'BIKE': {
+        SPEED: 0.15,
+        HEALTH: 400,
+        HEIGHT: 34,
+        WIDTH: 43,
+        KILL_REWARD: 100,
+        IMAGE_INDEX: 4,
     }
 }
 

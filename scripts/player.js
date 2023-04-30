@@ -11,6 +11,8 @@ class Player {
 
         this.gunHeight = 10;
 
+        this.money = 0;
+
         this.speedAmplifier = ENTITIES.PLAYER.SPEED;
         this.direction = Direction.LEFT;
         this.setupWeapon(WEAPON_NAMES[0])

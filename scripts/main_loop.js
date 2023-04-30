@@ -6,20 +6,24 @@ var images = [];
 var enemies = [];
 var gameTimer = 0;
 var shop = new Shop();
-var enemySpawnTime = [500, 2500, 3000, 5000, 5400, 6000, 7000, 10000, 10500]
+var enemySpawnTime = [500, 2500, 3000, 5000, 5400, 6000, 7000, 10000, 10500, 15000, 16000, 17000, 20000, 25000, 27000]
+var enemySpawnTime2 = [500, 2500, 3000, 5000, 5400, 6000, 7000, 10000, 10500, 15000, 16000, 17000, 20000, 25000, 27000]
 var msPerLevel = 60 * 1000;
 var maxLevel = 4;
 
 function preload() {
-    backgroundImage = loadImage(i_background);
+    backgroundImage = loadImage('assets/background.png');
 }
 
 function setup() {
     canvas = createCanvas(WIDTH, HEIGHT);
     p = new Player(200, 200, ENTITIES.PLAYER);
 
-    images.push(loadImage(i_player));
-    images.push(loadImage(i_enemy));
+    images.push(loadImage('assets/man.png'));
+    images.push(loadImage('assets/man2.png'));
+    images.push(loadImage('assets/box1.png'));
+    images.push(loadImage('assets/box2.png'));
+    images.push(loadImage('assets/bike.png'));
 
     backgroundBuffer = createGraphics(WIDTH, HEIGHT);
     backgroundBuffer.image(backgroundImage, 0, 0, WIDTH, HEIGHT)
@@ -30,7 +34,11 @@ function draw() {
 
     while (enemySpawnTime.length > 0 && gameTimer >= enemySpawnTime[0]) {
         enemySpawnTime.shift();
-        enemies.push(new Mailman(-10, random(20, 580), ENTITIES.STD));
+        enemies.push(new Mailman(-20, random(60, 550), ENTITIES.STD));
+    }
+    while (enemySpawnTime2.length > 0 && gameTimer >= enemySpawnTime2[0]) {
+        enemySpawnTime2.shift();
+        enemies.push(new Mailman(-20, random(60, 550), ENTITIES.BIKE));
     }
 
     background(0);
@@ -40,6 +48,10 @@ function draw() {
 
     p.tick(enemies);
 
+    enemies.filter(e => e.isDead())
+        .forEach(enemy => {
+            backgroundBuffer.image(images[2 + Math.round(random(0, 1))], enemy.x + enemy.config.WIDTH / 2, enemy.y + enemy.config.HEIGHT);
+        })
     enemies = enemies.filter(e => !e.isDead())
 
     for (let i = 0; i < enemies.length; i++) {
@@ -52,6 +64,7 @@ function draw() {
 }
 
 function drawGame() {
+    enemies.sort((a,b) => a.y - b.y);
     for (let i = 0; i < enemies.length; i++) {
         enemies[i].draw(images);
     }
@@ -92,7 +105,7 @@ function drawUI() {
     textSize(14);
     fill(255);
 
-    text('10$', WIDTH - 10, 50);
+    text(p.money + ' $', WIDTH - 10, 50);
     text(`AMMO: ${p.getAmmo()}`, WIDTH - 10, 70);
 
     shop.draw();
