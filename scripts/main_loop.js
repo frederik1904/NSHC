@@ -34,9 +34,6 @@ function draw() {
     }
 
     background(0);
-    backgroundBuffer.stroke(255, 0, 0)
-    backgroundBuffer.strokeWeight(10);
-    // backgroundBuffer.line(random(0, WIDTH), random(0, HEIGHT), random(0, WIDTH), random(0, HEIGHT));
     image(backgroundBuffer, 0, 0, WIDTH, HEIGHT)
 
     // Tick
@@ -74,9 +71,9 @@ function drawUI() {
     let levelHeight = 30;
     let levelBarBorder = 4;
 
-    fill(0);
+    fill(30);
     rect(0, 0, WIDTH, levelHeight);
-    fill(200, 100, 50);
+    fill(200, 140, 50);
     rect(levelBarBorder, levelBarBorder, getCurrentLevelProgress() * (WIDTH - levelBarBorder * 2), levelHeight - levelBarBorder * 2);
 
     textAlign(CENTER, CENTER);
@@ -95,3 +92,4 @@ function drawUI() {
     text(`AMMO: ${p.getAmmo()}`, WIDTH - 10, 70);
 }
 
+document.getElementB
