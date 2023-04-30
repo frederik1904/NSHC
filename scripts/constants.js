@@ -53,8 +53,20 @@ const WEAPONS = {
         KNOCKBACK: 0.5,
         SHOOT_DISTANCE: 500,
         BULLETS: 1,
-        SPREAD: 2,
+        SPREAD: 20,
         NAME: 'REVOLVER'
+    },
+    'SMG': {
+        MAG_SIZE: 50,
+        RELOAD_TIME: 500,
+        DAMAGE: 50,
+        COOLDOWN: 25,
+        DRAW_TIME: 25,
+        KNOCKBACK: 0.15,
+        SHOOT_DISTANCE: 400,
+        BULLETS: 1,
+        SPREAD: 50,
+        NAME: 'SMG',
     }
 }
 
@@ -71,8 +83,6 @@ const ENTITIES = {
         WIDTH: 20
     }
 }
-
-
 
 
 const WEAPON_NAMES = Object.getOwnPropertyNames(WEAPONS)

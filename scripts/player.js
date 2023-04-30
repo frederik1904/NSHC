@@ -70,7 +70,7 @@ class Player {
             // ...referenceWeapon, REMAINING_BULLETS: referenceWeapon.MAG_SIZE, NEXT_ALLOWED_ACTION_TIME: undefined, LAST_SHOT: undefined
         }
 
-        this.weapon = new Weapon(WEAPONS.REVOLVER)
+        this.weapon = new Weapon(WEAPONS.SMG)
     }
 
     getWeaponHeight() {
