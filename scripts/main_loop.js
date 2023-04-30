@@ -5,7 +5,7 @@ var backgroundBuffer;
 var images = [];
 var enemies = [];
 var gameTimer = 0;
-
+var shop = new Shop();
 var enemySpawnTime = [500, 2500, 3000, 5000, 5400, 6000, 7000, 10000, 10500]
 var msPerLevel = 60 * 1000;
 var maxLevel = 4;
@@ -36,7 +36,8 @@ function draw() {
     background(0);
     image(backgroundBuffer, 0, 0, WIDTH, HEIGHT)
 
-    // Tick
+    shop.tick(p)
+
     p.tick(enemies);
 
     enemies = enemies.filter(e => !e.isDead())
@@ -62,7 +63,7 @@ function getCurrentLevel() {
 }
 
 function getCurrentLevelProgress() {
-    if (getCurrentLevel() == maxLevel) {
+    if (getCurrentLevel() === maxLevel) {
         return 1;
     }
     return gameTimer / msPerLevel % 1;
@@ -93,6 +94,8 @@ function drawUI() {
 
     text('10$', WIDTH - 10, 50);
     text(`AMMO: ${p.getAmmo()}`, WIDTH - 10, 70);
+
+    shop.draw();
 }
 
 document.getElementB

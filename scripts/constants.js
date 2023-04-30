@@ -31,7 +31,8 @@ const WEAPONS = {
         SHOOT_DISTANCE: 300,
         BULLETS: 1,
         SPREAD: 0,
-        NAME: 'NORMAL_GUN'
+        NAME: 'NORMAL_GUN',
+        PRICE: 0
     },
     SHOTGIN: {
         MAG_SIZE: 2,
@@ -44,7 +45,8 @@ const WEAPONS = {
         BULLETS: 15,
         SHOOT_DISTANCE: 100,
         SPREAD: 30,
-        NAME: 'SHOTGIN'
+        NAME: 'SHOTGIN',
+        PRICE: 20
     },
     'REVOLVER': {
         MAG_SIZE: 8,
@@ -57,7 +59,8 @@ const WEAPONS = {
         SHOOT_DISTANCE: 500,
         BULLETS: 1,
         SPREAD: 20,
-        NAME: 'REVOLVER'
+        NAME: 'REVOLVER',
+        PRICE: 20
     },
     'SMG': {
         MAG_SIZE: 50,
@@ -71,6 +74,7 @@ const WEAPONS = {
         BULLETS: 1,
         SPREAD: 50,
         NAME: 'SMG',
+        PRICE: 20
     }
 }
 

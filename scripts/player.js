@@ -65,13 +65,7 @@ class Player {
     }
 
     setupWeapon(name) {
-        const referenceWeapon = WEAPONS.SHOTGIN;
-
-        this.weapon = {
-            // ...referenceWeapon, REMAINING_BULLETS: referenceWeapon.MAG_SIZE, NEXT_ALLOWED_ACTION_TIME: undefined, LAST_SHOT: undefined
-        }
-
-        this.weapon = new Weapon(WEAPONS.SMG)
+        this.weapon = new Weapon(WEAPONS[name])
     }
 
     getWeaponHeight() {
@@ -80,6 +74,10 @@ class Player {
 
     getAmmo() {
         return this.weapon.AMMO;
+    }
+
+    withdrawMoney(value) {
+        return true;
     }
 
 }
