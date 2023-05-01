@@ -99,7 +99,7 @@ const ENTITIES = {
         KILL_REWARD: 100,
         IMAGE_INDEX: 4,
     }, 'CAR': {
-        SPEED: 0.03,
+        SPEED: 0.023,
         HEALTH: 3500,
         HEIGHT: 38,
         WIDTH: 47,
