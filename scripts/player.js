@@ -42,16 +42,16 @@ class Player {
 
         let speedAmplifier = deltaTime * this.speedAmplifier
 
-        if (keyIsDown(LEFT_ARROW)) {
+        if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
             this.x_vel -= speedAmplifier;
         }
-        if (keyIsDown(RIGHT_ARROW)) {
+        if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
             this.x_vel += speedAmplifier;
         }
-        if (keyIsDown(UP_ARROW)) {
+        if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
             this.y_vel -= speedAmplifier;
         }
-        if (keyIsDown(DOWN_ARROW)) {
+        if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
             this.y_vel += speedAmplifier;
         }
 
