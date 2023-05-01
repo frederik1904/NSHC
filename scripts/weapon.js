@@ -10,7 +10,7 @@ class Weapon {
     }
 
     tick(enemies, player) {
-        if (keyIsDown(32) && this.canShoot()) {
+        if (keyIsDown(32) && this.canShoot()) { // shoot, space
             this.REMAINING_BULLETS -= 1;
             this.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.config.COOLDOWN;
             this.LAST_SHOT = Date.now();
@@ -34,7 +34,7 @@ class Weapon {
             return WEAPON_ACTION.FIRED;
         }
 
-        if (keyIsDown(82) && this.canWeaponAction()) {
+        if (keyIsDown(82) && this.canWeaponAction()) { // r            
             this.reload();
             return WEAPON_ACTION.RELOAD;
         }
@@ -48,7 +48,6 @@ class Weapon {
             stroke(200, 150, 50, 150);
             strokeWeight(5);
             for (let i = 0; i < this.bulletArray.length; i++) {
-                console.log(player.x, player.getWeaponHeight(), this.bulletArray[i].x, this.bulletArray[i].y)
                 line(player.x, player.getWeaponHeight(), this.bulletArray[i].x, this.bulletArray[i].y);
             }
             pop();
@@ -56,7 +55,7 @@ class Weapon {
     }
 
     reload() {
-        if (this.AMMO > 0) {
+        if (this.AMMO > 0 && this.REMAINING_BULLETS != this.config.MAG_SIZE) {
             this.REMAINING_BULLETS = Math.min(this.config.MAG_SIZE, this.AMMO);
             this.AMMO = this.AMMO - Math.min(this.config.MAG_SIZE, this.AMMO)
             this.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.config.RELOAD_TIME;

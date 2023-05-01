@@ -21,7 +21,11 @@ class Player {
     draw(images) {
         image(images[0], p.x, p.y);
         this.weapon.draw(this)
-        text(`${this.weapon.REMAINING_BULLETS}/${this.weapon.config.MAG_SIZE}`,this.x, this.y);
+        if (this.weapon.NEXT_ALLOWED_ACTION_TIME > Date.now() && this.weapon.REMAINING_BULLETS == this.weapon.config.MAG_SIZE) {
+            text('.'.repeat(1 + floor(gameTimer / 300) % 3) + `/${this.weapon.config.MAG_SIZE}`,this.x, this.y);
+        } else {
+            text(`${this.weapon.REMAINING_BULLETS}/${this.weapon.config.MAG_SIZE}`,this.x, this.y);
+        }
     }
 
     tick(enemies) {
@@ -76,6 +80,10 @@ class Player {
 
     getAmmo() {
         return this.weapon.AMMO;
+    }
+
+    getClips() {
+        return this.getAmmo() / this.weapon.config.MAG_SIZE;
     }
 
     withdrawMoney(value) {

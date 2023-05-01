@@ -6,13 +6,19 @@ var images = [];
 var enemies = [];
 var gameTimer = 0;
 var shop = new Shop();
-var enemySpawnTime = [500, 5000, 10000, 14000, 17000, 20000, 21000, 29000, 32000, 34000, 35000, 40000, 41000, 42000]
-var enemySpawnTime2 = [70000]
+var enemySpawnTime = [
+    500, 5000, 10000, 14000, 17000, 20000, 21000, 25000, 27000, 29000, 30000, 32000, 32500, 34000, 35000, 40000, 41000, 42000, 43000, 44000,
+    50000, 50000, 50000, 50000, 50000, 50000, 55000, 59000, 60000, 62000, 67000, 70000, 70000, 70000, 70000, 71000, 80000, 82000, 86500, 88500, 92500, 95500,
+    100000, 104000, 108000, 112000, 116000, 120000, 124000, 128000, 132000, 136000, 140000, 140000
+]
+var enemySpawnTime2 = [65000, 75000, 80000, 90000, 90000, 100000, 120000, 140000]
+var enemySpawnTime3 = [130000]
 var msPerLevel = 50 * 1000;
 var maxLevel = 4;
 var levelHeight = 30;
 var levelBarBorder = 4;
 var translateAmount = levelHeight;
+var gameOver = false;
 
 function preload() {
     backgroundImage = loadImage('assets/background.png');
@@ -27,13 +33,16 @@ function setup() {
     images.push(loadImage('assets/box1.png'));
     images.push(loadImage('assets/box2.png'));
     images.push(loadImage('assets/bike.png'));
+    images.push(loadImage('assets/car.png'));
 
     backgroundBuffer = createGraphics(WIDTH, HEIGHT);
     backgroundBuffer.image(backgroundImage, 0, 0, WIDTH, HEIGHT)
 }
 
 function draw() {
-    gameTimer += deltaTime;
+    if (!gameOver) {
+        gameTimer += deltaTime;
+    }
 
     while (enemySpawnTime.length > 0 && gameTimer >= enemySpawnTime[0]) {
         enemySpawnTime.shift();
@@ -41,7 +50,11 @@ function draw() {
     }
     while (enemySpawnTime2.length > 0 && gameTimer >= enemySpawnTime2[0]) {
         enemySpawnTime2.shift();
-        enemies.push(new Mailman(-20, random(60, 550), ENTITIES.BIKE));
+        enemies.push(new Mailman(-30, random(60, 550), ENTITIES.BIKE));
+    }
+    while (enemySpawnTime3.length > 0 && gameTimer >= enemySpawnTime3[0]) {
+        enemySpawnTime3.shift();
+        enemies.push(new Mailman(-40, HEIGHT / 2, ENTITIES.CAR));
     }
 
 
@@ -51,7 +64,7 @@ function draw() {
 
     enemies.filter(e => e.isDead())
         .forEach(enemy => {
-            backgroundBuffer.image(images[2 + Math.round(random(0, 1))], enemy.x + enemy.config.WIDTH / 2, enemy.y + enemy.config.HEIGHT);
+            backgroundBuffer.image(images[2 + Math.round(random(0, 1))], enemy.x, enemy.y + enemy.config.HEIGHT);
         })
     enemies = enemies.filter(e => !e.isDead())
 
@@ -78,11 +91,11 @@ function drawGame() {
 }
 
 function getCurrentLevel() {
-    return Math.min(1 + Math.floor(gameTimer / msPerLevel), maxLevel);
+    return Math.min(3, Math.min(1 + Math.floor(gameTimer / msPerLevel), maxLevel));
 }
 
 function getCurrentLevelProgress() {
-    if (getCurrentLevel() === maxLevel) {
+    if (Math.floor(gameTimer / msPerLevel) > maxLevel - 2) {
         return 1;
     }
     return gameTimer / msPerLevel % 1;
@@ -109,7 +122,28 @@ function drawUI() {
     fill(255);
 
     text(p.money + ' $', WIDTH - 10, 50);
-    text(`AMMO: ${p.getAmmo()}`, WIDTH - 10, 70);
+    text(`Clips: ${p.getClips()}`, WIDTH - 10, 70);
+
+    if (enemies.length == 0 && gameTimer > 150000 && !gameOver) {
+        push();
+        stroke(100, 150, 250)
+        textSize(150);
+        fill(100, 150, 250);
+        textAlign(CENTER, CENTER);
+        text('You won!', WIDTH / 2, HEIGHT / 2);
+        pop();
+    } else if (gameOver) {
+        push();
+        stroke(250, 50, 50)
+        textSize(150);
+        fill(250, 50, 50);
+        textAlign(CENTER, CENTER);
+        text('You lost!', WIDTH / 2, HEIGHT / 2);
+        textSize(30);
+        text('Reload the page to try again', WIDTH / 2, HEIGHT / 2 + 100);
+        pop();
+    }
+
 
     shop.draw();
 }

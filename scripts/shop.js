@@ -49,17 +49,17 @@ class Shop {
 
     tick(player) {
         if (this.canDoAction()) {
-            if (keyIsDown(81)) {
+            if (keyIsDown(81)) { // q
                 this.selected = ((this.selected - 1) + this.items.length) % this.items.length;
                 this.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.cooldown;
             }
 
-            if (keyIsDown(69)) {
+            if (keyIsDown(69)) { // e
                 this.selected = ((this.selected + 1) + this.items.length) % this.items.length;
                 this.NEXT_ALLOWED_ACTION_TIME = Date.now() + this.cooldown;
             }
 
-            if (keyIsDown(66)) {
+            if (keyIsDown(66)) { // b
                 let couldBuy = player.withdrawMoney(WEAPONS[this.items[this.selected]].PRICE);
                 if (couldBuy) {
                     player.setupWeapon(this.items[this.selected])

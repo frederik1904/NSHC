@@ -33,6 +33,10 @@ class Mailman {
             return;
         }
 
+        if (this.x > WIDTH + this.config.WIDTH) {
+            gameOver = true;
+        }
+
         let speedAmplifier = deltaTime * this.config.SPEED;
         this.x += speedAmplifier
     }
