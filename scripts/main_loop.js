@@ -50,7 +50,7 @@ function draw() {
     }
     while (enemySpawnTime2.length > 0 && gameTimer >= enemySpawnTime2[0]) {
         enemySpawnTime2.shift();
-        enemies.push(new Mailman(-30, random(60, 550), ENTITIES.BIKE));
+        enemies.push(new Mailman(-30, random(150, 450), ENTITIES.BIKE));
     }
     while (enemySpawnTime3.length > 0 && gameTimer >= enemySpawnTime3[0]) {
         enemySpawnTime3.shift();
