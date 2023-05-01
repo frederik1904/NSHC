@@ -11,23 +11,32 @@ class Shop {
     draw() {
         push();
 
-        const shopY1 = HEIGHT - this.height;
-        const shopY2 = HEIGHT;
+        const shopY1 = HEIGHT + translateAmount;
+        const shopY2 = shopY1 + this.height;
 
-        fill(255, 0, 255)
+        fill(200, 140, 50);
         rect(0, shopY1, WIDTH, this.height)
 
         const rectSize = WIDTH / this.items.length
-        fill(0, 0, 0)
+
         for (let i = 0; i < this.items.length; i++) {
+            fill(0, 0, 0)
+            stroke(0);
             const x = rectSize * i;
+            strokeWeight(2);
             line(x + rectSize, shopY1, x + rectSize, shopY2);
 
             textAlign(CENTER);
+            strokeWeight(0);
+            textStyle(NORMAL);
+            stroke(255);
+            fill(255);
+            text(`${WEAPONS[this.items[i]].NAME} (${WEAPONS[this.items[i]].PRICE}$)`, x + (rectSize / 2), shopY1 + (this.height / 2))
 
-            text(`${this.items[i]} (${WEAPONS[this.items[i]].PRICE}$)`, x + (rectSize / 2), shopY1 + (this.height / 2))
-
-            if (i == this.selected) {
+            fill(0, 0, 0)
+            stroke(0);
+            if (i != this.selected) {
+                strokeWeight(2);
                 fill(0, 0, 0, 100)
                 rect(x, shopY1, rectSize, this.height)
             }

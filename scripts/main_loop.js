@@ -6,18 +6,21 @@ var images = [];
 var enemies = [];
 var gameTimer = 0;
 var shop = new Shop();
-var enemySpawnTime = [500, 2500, 3000, 5000, 5400, 6000, 7000, 10000, 10500, 15000, 16000, 17000, 20000, 25000, 27000]
-var enemySpawnTime2 = [500, 2500, 3000, 5000, 5400, 6000, 7000, 10000, 10500, 15000, 16000, 17000, 20000, 25000, 27000]
-var msPerLevel = 60 * 1000;
+var enemySpawnTime = [500, 5000, 10000, 14000, 17000, 20000, 21000, 29000, 32000, 34000, 35000, 40000, 41000, 42000]
+var enemySpawnTime2 = [70000]
+var msPerLevel = 50 * 1000;
 var maxLevel = 4;
+var levelHeight = 30;
+var levelBarBorder = 4;
+var translateAmount = levelHeight;
 
 function preload() {
     backgroundImage = loadImage('assets/background.png');
 }
 
 function setup() {
-    canvas = createCanvas(WIDTH, HEIGHT);
-    p = new Player(200, 200, ENTITIES.PLAYER);
+    canvas = createCanvas(WIDTH, HEIGHT + levelHeight + 30);
+    p = new Player(WIDTH - 100, HEIGHT / 2, ENTITIES.PLAYER);
 
     images.push(loadImage('assets/man.png'));
     images.push(loadImage('assets/man2.png'));
@@ -41,8 +44,6 @@ function draw() {
         enemies.push(new Mailman(-20, random(60, 550), ENTITIES.BIKE));
     }
 
-    background(0);
-    image(backgroundBuffer, 0, 0, WIDTH, HEIGHT)
 
     shop.tick(p)
 
@@ -59,12 +60,17 @@ function draw() {
     }
 
     // Draw
+    push()
+    translate(0, translateAmount);
+    background(100);
+    image(backgroundBuffer, 0, 0, WIDTH, HEIGHT)
     drawGame();
+    pop();
     drawUI();
 }
 
 function drawGame() {
-    enemies.sort((a,b) => a.y - b.y);
+    enemies.sort((a, b) => a.y - b.y);
     for (let i = 0; i < enemies.length; i++) {
         enemies[i].draw(images);
     }
@@ -85,10 +91,7 @@ function getCurrentLevelProgress() {
 function drawUI() {
     stroke(0)
     // Level
-    let levelHeight = 30;
-    let levelBarBorder = 4;
-
-    fill(30);
+    fill(0);
     rect(0, 0, WIDTH, levelHeight);
     fill(200, 140, 50);
     rect(levelBarBorder, levelBarBorder, getCurrentLevelProgress() * (WIDTH - levelBarBorder * 2), levelHeight - levelBarBorder * 2);
@@ -102,7 +105,7 @@ function drawUI() {
     // Money
     textAlign(RIGHT, CENTER);
     textStyle(BOLD);
-    textSize(14);
+    textSize(18);
     fill(255);
 
     text(p.money + ' $', WIDTH - 10, 50);

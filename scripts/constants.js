@@ -31,7 +31,7 @@ const WEAPONS = {
         SHOOT_DISTANCE: 300,
         BULLETS: 1,
         SPREAD: 0,
-        NAME: 'NORMAL_GUN',
+        NAME: 'Pistol',
         PRICE: 0
     },
     SHOTGIN: {
@@ -45,7 +45,7 @@ const WEAPONS = {
         BULLETS: 15,
         SHOOT_DISTANCE: 100,
         SPREAD: 30,
-        NAME: 'SHOTGIN',
+        NAME: 'Shotgun',
         PRICE: 20
     },
     'REVOLVER': {
@@ -59,7 +59,7 @@ const WEAPONS = {
         SHOOT_DISTANCE: 500,
         BULLETS: 1,
         SPREAD: 20,
-        NAME: 'REVOLVER',
+        NAME: 'Deagle',
         PRICE: 20
     },
     'SMG': {
